@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image";
+import Tags from "./tags";
 
 interface CareerCardProps {
   logo: StaticImageData;
@@ -10,7 +11,7 @@ interface CareerCardProps {
     title: string;
     period: string;
     description: string;
-    tags?: string[];
+    techStack?: string[];
   }[];
 }
 
@@ -51,18 +52,7 @@ export default function CareerCard({
               <h3 className="text-xl font-bold">| {project.title}</h3>
               <p className="text-gray-600">{project.period}</p>
               <p className="text-gray-800">{project.description}</p>
-              {project.tags && (
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-gray-200 px-3 py-1 text-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
+              {project.techStack && <Tags tags={project.techStack} />}
             </div>
           ))}
         </div>

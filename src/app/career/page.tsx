@@ -15,7 +15,7 @@ export default function Career() {
           period: "2024년 중반기 ~ 2024년 하반기",
           description:
             "React-flow를 활용한 노드 다이어그램 기반 노코드 업무 자동화 플랫폼 개발",
-          tags: [
+          techStack: [
             "React.js",
             "Typescript",
             "Emotion",
@@ -30,21 +30,21 @@ export default function Career() {
           title: "WINCL",
           period: "2023년 상반기 ~ 2023년 하반기",
           description: "탄소배출권 관련 WINCL 스토어 개발 (백오피스 동시 개발)",
-          tags: ["React.js", "Scss"],
+          techStack: ["React.js", "Scss"],
         },
         {
           title: "대표 홈페이지 개발 참여",
           period: "2024년 하반기",
           description:
             "Framer를 통해 구현되었으며, react 프로그래밍 부분 개발 및 페이지 호스팅",
-          tags: ["AWS", "Framer"],
+          techStack: ["AWS", "Framer"],
         },
         {
           title: "사내 FE 프로젝트 CI/CD 담당",
           period: "2023년 상반기 ~ 현재",
           description:
             "Route53, S3, CloudFront, Amplify, ACM, Github Actions을 활용하여 CI/CD 환경 구축",
-          tags: ["AWS", "Github Actions"],
+          techStack: ["AWS", "Github Actions"],
         },
       ],
     },

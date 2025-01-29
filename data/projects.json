@@ -1,0 +1,56 @@
+[
+  {
+    "title": "GEMVERSE",
+    "id": "1",
+    "path": "gemverse",
+    "period": "2024년 중반기 ~ 2024년 하반기 (2인 프로젝트)",
+    "description": "노코드 업무 자동화 플랫폼",
+    "details": [
+      "React-flow를 활용하여 노드 기반 다이어그램 작성 기능 개발",
+      "React-hook-form을 활용하여 유저가 선택한 trigger, action 이벤트에 대한 form 관리 및 CRUD 기능 개발",
+      "zustand를 활용한 전역 상태 관리",
+      "유저가 생성한 flow 목록 페이지 개발",
+      "petra wallet SDK를 연동하여, 지갑 연동 및 서명 기능 개발"
+    ],
+    "link": "https://www.verse.blocko.io/",
+    "techStack": [
+      "React.js",
+      "Typescript",
+      "Emotion",
+      "Mui",
+      "React-Query",
+      "Zustand",
+      "React-hook-form",
+      "React-flow"
+    ]
+  },
+  {
+    "title": "WINCL",
+    "id": "2",
+    "path": "wincl",
+    "period": "2023년 상반기 ~ 2023년 하반기 (1인 프로젝트)",
+    "description": "탄소배출권 관련 스토어 페이지 및 백오피스 개발",
+    "details": [
+      "KAKAO, GOOGLE, PAYCO, FACEBOOK을 연동한 SNS 로그인 기능",
+      "PAYCO, KCP, STRIPE을 연동한 결제시스템 개발",
+      "AOS라이브러리와 IntersectionObserver api를 활용하여 뷰포트에 표시되는 요소들에 개별적인 애니메이션 효과 부여",
+      "react-i18n 라이브러리를 활용하여 국,영문기능 구현",
+      "AWS amplify를 통한 호스팅 설정 및 CI/CD 환경 구성"
+    ],
+    "link": "https://market.wincl.io/",
+    "techStack": ["React", "SCSS"]
+  },
+  {
+    "title": "Cafe24 CCCV APP",
+    "id": "3",
+    "path": "cafe24-cccv-app",
+    "period": "2022 하반기 (3인 프로젝트)",
+    "description": "cafe24를 기반으로 제작된 쇼핑몰에 NFT상품을 등록할 수 있는 admin 웹 어플리케이션",
+    "details": [
+      "프로필 수정 기능 팝업 개발",
+      "에어드랍 목록과 NFT 발행 페이지 개발",
+      "사용자의 설정에 따른 페이지별 지갑 노출 범위 설정 기능 개발"
+    ],
+    "techStack": ["Vue", "Vuex", "Nuxt", "SCSS"]
+  }
+]
