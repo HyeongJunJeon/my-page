@@ -11,11 +11,11 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="z-50 bg-white shadow-md">
+    <nav className="fixed left-0 top-0 z-50 w-full bg-white shadow-md">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="text-xl font-bold">
-            JHJ&apos;s Portfolio
+            전형준&apos;s Portfolio
           </Link>
 
           <div className="flex space-x-8">
