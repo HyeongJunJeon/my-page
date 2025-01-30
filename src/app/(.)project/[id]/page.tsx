@@ -1,12 +1,5 @@
 import ProjectPage from "@/app/project/[slug]/page";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import ModalLayout from "@/components/ModalLayout";
 
 type Props = {
   params: {
@@ -14,18 +7,20 @@ type Props = {
   };
 };
 
-export default async function page({ params }: Props) {
+export default async function Page({ params }: Props) {
   const { id } = await params;
 
   return (
-    <Dialog open={true}>
-      <DialogContent className="h-5/6 max-w-5xl overflow-scroll">
-        <ProjectPage
-          params={{
-            slug: id,
-          }}
-        />
-      </DialogContent>
-    </Dialog>
+    <ModalLayout
+      open={true}
+      title=""
+      description="새로고침을 하면 모달이 아닌 상세페이지로 이동해요. (Next.js intercepting routes)"
+    >
+      <ProjectPage
+        params={{
+          slug: id,
+        }}
+      />
+    </ModalLayout>
   );
 }

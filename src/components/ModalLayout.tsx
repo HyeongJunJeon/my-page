@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Dialog,
   DialogContent,
@@ -5,13 +7,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useRouter } from "next/navigation";
 
 type ModalLayoutProps = {
   open: boolean;
   title: string;
   description?: string;
   children: React.ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 export default function ModalLayout({
@@ -21,9 +24,18 @@ export default function ModalLayout({
   children,
   onClose,
 }: ModalLayoutProps) {
+  const router = useRouter();
+
+  const handleDialogClose = () => {
+    if (onClose) return onClose();
+
+    // intercepting routes를 통해 모달 구현 시 close 동작은 경로를 이전으로 이동하는 것으로 대체
+    router.back();
+  };
+
   return (
-    <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="rounded-2xl border border-[#454A5C] bg-[#1F2129] p-6 shadow-[0px_8px_16px_0px_#00000066]">
+    <Dialog open={open} onOpenChange={handleDialogClose}>
+      <DialogContent className="h-5/6 max-w-5xl overflow-auto">
         <DialogHeader>
           <DialogTitle className="text-xl font-medium tracking-[-0.015em] text-white">
             {title}
