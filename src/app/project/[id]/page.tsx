@@ -3,15 +3,14 @@ import { getAllProjects, getProjectData } from "@/service/projects";
 import { Metadata } from "next";
 
 type Props = {
-  params: {
-    slug: string;
-  };
+  params: Promise<{
+    id: string;
+  }>;
 };
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { id } = await params;
 
-  const { title, description } = await getProjectData(slug);
+  const { title, description } = await getProjectData(id);
   return {
     title: `project ${title}`,
     description,
@@ -22,13 +21,13 @@ export async function generateStaticParams() {
   const projects = await getAllProjects();
 
   return projects.map((project) => ({
-    slug: project.path,
+    id: project.path,
   }));
 }
 
 export default async function Page({ params }: Props) {
-  const { slug } = await params;
+  const { id } = await params;
 
-  const project = await getProjectData(slug);
+  const project = await getProjectData(id);
   return <ProjectDetail project={project} />;
 }

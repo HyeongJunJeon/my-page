@@ -11,7 +11,14 @@ export default function MarkdownViewer({ content }: { content: string }) {
       className="prose max-w-none"
       remarkPlugins={[remarkGfm]}
       components={{
-        code({ node, inline, className, children, ...props }) {
+        code({
+          inline,
+          className,
+          children,
+          ...props
+        }: React.HTMLAttributes<HTMLElement> & {
+          inline?: boolean;
+        }) {
           const match = /language-(\w+)/.exec(className || "");
           return !inline && match ? (
             <SyntaxHighlighter

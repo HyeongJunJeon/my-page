@@ -2,6 +2,7 @@
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 interface AOSWrapperProps {
   children: React.ReactNode;
@@ -21,7 +22,10 @@ const AOSWrapper = ({ children, delay }: AOSWrapperProps) => (
 );
 
 export default function Greetings() {
-  AOS.init();
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="text-center">
       <AOSWrapper delay="300">
