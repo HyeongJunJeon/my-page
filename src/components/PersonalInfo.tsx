@@ -1,7 +1,8 @@
 import { FaMapMarkerAlt, FaPhone, FaUser } from "react-icons/fa";
 import { MdCalendarToday, MdEmail, MdSchool } from "react-icons/md";
+import PersonalInfoCard from "./PersonalInfoCard";
 
-const personalInfoData = [
+const PERSONAL_INFO = [
   {
     icon: <FaUser className="h-6 w-6" />,
     title: "이름",
@@ -37,16 +38,8 @@ const personalInfoData = [
 export default function PersonalInfo() {
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {personalInfoData.map((info, index) => (
-        <div key={index} className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center">
-            {info.icon}
-          </div>
-          <div>
-            <h2 className="text-lg font-semibold">{info.title}</h2>
-            <p className="text-gray-600">{info.description}</p>
-          </div>
-        </div>
+      {PERSONAL_INFO.map((info, index) => (
+        <PersonalInfoCard key={index} {...info} />
       ))}
     </div>
   );

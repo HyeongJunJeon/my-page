@@ -14,28 +14,28 @@ import AwsIcon from "@/assets/images/ic-aws.png";
 import VercelIcon from "@/assets/images/ic-vercel.png";
 import GithubIcon from "@/assets/images/ic-github.png";
 
+const SKILLS = [
+  { icon: HTMLIcon, name: "HTML5" },
+  { icon: CssIcon, name: "CSS3" },
+  { icon: JSIcon, name: "JavaScript" },
+  { icon: TSIcon, name: "TypeScript" },
+  { icon: StyledComponentIcon, name: "Styled-component" },
+  { icon: TailwindIcon, name: "Tailwind CSS" },
+  { icon: ReactIcon, name: "React.js" },
+  { icon: NextIcon, name: "Next.js" },
+  { icon: ReactQueryIcon, name: "React-query" },
+  { icon: ZustandIcon, name: "Zustand" },
+];
+
+const DEPLOYMENTS = [
+  { icon: AwsIcon, name: "AWS" },
+  { icon: VercelIcon, name: "Vercel" },
+  { icon: GithubIcon, name: "Github-action" },
+];
+
+const EXTRAS = [{ icon: FramerIcon, name: "Framer" }];
+
 export default function Skills() {
-  const skills = [
-    { icon: HTMLIcon, name: "HTML5" },
-    { icon: CssIcon, name: "CSS3" },
-    { icon: JSIcon, name: "JavaScript" },
-    { icon: TSIcon, name: "TypeScript" },
-    { icon: StyledComponentIcon, name: "Styled-component" },
-    { icon: TailwindIcon, name: "Tailwind CSS" },
-    { icon: ReactIcon, name: "React.js" },
-    { icon: NextIcon, name: "Next.js" },
-    { icon: ReactQueryIcon, name: "React-query" },
-    { icon: ZustandIcon, name: "Zustand" },
-  ];
-
-  const deployments = [
-    { icon: AwsIcon, name: "AWS" },
-    { icon: VercelIcon, name: "Vercel" },
-    { icon: GithubIcon, name: "Github-action" },
-  ];
-
-  const extras = [{ icon: FramerIcon, name: "Framer" }];
-
   return (
     <div className="mx-auto max-w-7xl rounded-3xl bg-[#e6f3ff] p-12">
       <h2 className="mb-16 flex items-center justify-center gap-2 text-5xl font-black">
@@ -46,7 +46,7 @@ export default function Skills() {
         <div className="rounded-xl bg-white p-8">
           <h3 className="mb-4 text-xl font-bold text-[#ff6b6b]">FrontEnd</h3>
           <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
-            {skills.map((skill) => (
+            {SKILLS.map((skill) => (
               <SkillCard key={skill.name} {...skill} />
             ))}
           </div>
@@ -55,7 +55,7 @@ export default function Skills() {
         <div className="rounded-xl bg-white p-8">
           <h3 className="mb-4 text-xl font-bold text-[#ff922b]">Deployment</h3>
           <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
-            {deployments.map((deployment) => (
+            {DEPLOYMENTS.map((deployment) => (
               <SkillCard key={deployment.name} {...deployment} />
             ))}
           </div>
@@ -64,7 +64,7 @@ export default function Skills() {
         <div className="rounded-xl bg-white p-8">
           <h3 className="mb-4 text-xl font-bold text-[#ff922b]">Extra</h3>
           <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
-            {extras.map((extra) => (
+            {EXTRAS.map((extra) => (
               <SkillCard key={extra.name} {...extra} />
             ))}
           </div>
