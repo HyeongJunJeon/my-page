@@ -1,11 +1,23 @@
 import ProjectPage from "@/app/project/[slug]/page";
 import ModalLayout from "@/components/ModalLayout";
+import { getProjectData } from "@/service/projects";
+import { Metadata } from "next";
 
 type Props = {
   params: {
     id: string;
   };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+
+  const { title, description } = await getProjectData(id);
+  return {
+    title: `project ${title}`,
+    description,
+  };
+}
 
 export default async function Page({ params }: Props) {
   const { id } = await params;

@@ -1,6 +1,12 @@
 import ArchiveCard from "@/components/ArchiveCard";
 import GithubIcon from "@/assets/images/ic-github.png";
 import VelogIcon from "@/assets/images/ic-velog.jpeg";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "archiving",
+  description: "archives 살펴보기",
+};
 
 export default function Archiving() {
   const archives = [

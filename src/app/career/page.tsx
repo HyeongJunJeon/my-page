@@ -1,5 +1,11 @@
 import CareerCard from "@/components/CareerCard";
 import BlockoIcon from "@/assets/images/ic-blocko.png";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "career",
+  description: "career 살펴보기",
+};
 
 export default function Career() {
   const careers = [

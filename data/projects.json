@@ -29,7 +29,7 @@
     "id": "2",
     "path": "wincl",
     "period": "2023년 상반기 ~ 2023년 하반기 (1인 프로젝트)",
-    "description": "탄소배출권 관련 스토어 페이지 및 백오피스 개발",
+    "description": "탄소배출권 관련 스토어 페이지 및 백오피스",
     "details": [
       "KAKAO, GOOGLE, PAYCO, FACEBOOK을 연동한 SNS 로그인 기능",
       "PAYCO, KCP, STRIPE을 연동한 결제시스템 개발",

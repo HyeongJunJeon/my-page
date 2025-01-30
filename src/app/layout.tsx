@@ -4,8 +4,14 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "전형준's Portfolio",
-  description: "Welcome to 전형준's Portfolio",
+  title: {
+    default: "전형준's Portfolio",
+    template: "전형준 | %s",
+  },
+  description: "welcome to 전형준's Portfolio",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
