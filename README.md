@@ -6,6 +6,7 @@
 - Next(v15) + TS
 - tailwind
 - shadcn/ui
+- sanity (headless CMS)
 
 ## Scripts
 
