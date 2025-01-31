@@ -1,41 +1,31 @@
+import { Skill } from "@/model/About";
 import SkillCard from "./SkillCard";
-import HTMLIcon from "@/assets/images/ic-html.png";
-import JSIcon from "@/assets/images/ic-js.png";
-import CssIcon from "@/assets/images/ic-css.png";
-import ReactIcon from "@/assets/images/ic-react.png";
-import NextIcon from "@/assets/images/ic-next.png";
-import TailwindIcon from "@/assets/images/ic-tailwind.png";
-import StyledComponentIcon from "@/assets/images/ic-styled-component.png";
-import TSIcon from "@/assets/images/ic-ts.png";
-import FramerIcon from "@/assets/images/ic-framer.png";
-import ZustandIcon from "@/assets/images/ic-zustand.png";
-import ReactQueryIcon from "@/assets/images/ic-react-query.png";
-import AwsIcon from "@/assets/images/ic-aws.png";
-import VercelIcon from "@/assets/images/ic-vercel.png";
-import GithubIcon from "@/assets/images/ic-github.png";
 
-const SKILLS = [
-  { icon: HTMLIcon, name: "HTML5" },
-  { icon: CssIcon, name: "CSS3" },
-  { icon: JSIcon, name: "JavaScript" },
-  { icon: TSIcon, name: "TypeScript" },
-  { icon: StyledComponentIcon, name: "Styled-component" },
-  { icon: TailwindIcon, name: "Tailwind CSS" },
-  { icon: ReactIcon, name: "React.js" },
-  { icon: NextIcon, name: "Next.js" },
-  { icon: ReactQueryIcon, name: "React-query" },
-  { icon: ZustandIcon, name: "Zustand" },
-];
+async function fetchSkills(): Promise<Skill[]> {
+  const response = await fetch(`${process.env.API_BASE_URL}/api/skill`, {
+    cache: "force-cache",
+  });
+  if (!response.ok) {
+    throw new Error("skill정보를 불러오는데 실패했습니다.");
+  }
 
-const DEPLOYMENTS = [
-  { icon: AwsIcon, name: "AWS" },
-  { icon: VercelIcon, name: "Vercel" },
-  { icon: GithubIcon, name: "Github-action" },
-];
+  return response.json();
+}
 
-const EXTRAS = [{ icon: FramerIcon, name: "Framer" }];
+function sortSkills(skills: Skill[] | undefined): Skill[] | undefined {
+  return skills?.sort((a, b) => a.order - b.order);
+}
 
-export default function Skills() {
+export default async function Skills() {
+  const skills = await fetchSkills();
+
+  // 처음에 sanity에 type별로 저장했어야 했는데, groupBy를 사용해볼겸 구현해봤습니다.
+  const SkillsGroupedByType = Object.groupBy(skills, (skill) => skill.type);
+
+  const frontEnd = sortSkills(SkillsGroupedByType["FE"]);
+  const deployment = sortSkills(SkillsGroupedByType["deployments"]);
+  const extra = sortSkills(SkillsGroupedByType["extra"]);
+
   return (
     <div className="mx-auto max-w-7xl rounded-3xl bg-[#e6f3ff] p-12">
       <h2 className="mb-16 flex items-center justify-center gap-2 text-5xl font-black">
@@ -43,32 +33,40 @@ export default function Skills() {
       </h2>
 
       <div className="grid gap-8">
-        <div className="rounded-xl bg-white p-8">
-          <h3 className="mb-4 text-xl font-bold text-[#ff6b6b]">FrontEnd</h3>
-          <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
-            {SKILLS.map((skill) => (
-              <SkillCard key={skill.name} {...skill} />
-            ))}
+        {frontEnd && (
+          <div className="rounded-xl bg-white p-8">
+            <h3 className="mb-4 text-xl font-bold text-[#ff6b6b]">FrontEnd</h3>
+            <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
+              {frontEnd.map((skill) => (
+                <SkillCard key={skill.title} {...skill} />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="rounded-xl bg-white p-8">
-          <h3 className="mb-4 text-xl font-bold text-[#ff922b]">Deployment</h3>
-          <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
-            {DEPLOYMENTS.map((deployment) => (
-              <SkillCard key={deployment.name} {...deployment} />
-            ))}
+        {deployment && (
+          <div className="rounded-xl bg-white p-8">
+            <h3 className="mb-4 text-xl font-bold text-[#ff922b]">
+              Deployment
+            </h3>
+            <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
+              {deployment.map((deployment) => (
+                <SkillCard key={deployment.title} {...deployment} />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="rounded-xl bg-white p-8">
-          <h3 className="mb-4 text-xl font-bold text-[#ff922b]">Extra</h3>
-          <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
-            {EXTRAS.map((extra) => (
-              <SkillCard key={extra.name} {...extra} />
-            ))}
+        {extra && (
+          <div className="rounded-xl bg-white p-8">
+            <h3 className="mb-4 text-xl font-bold text-[#7838e7]">Extra</h3>
+            <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
+              {extra.map((extra) => (
+                <SkillCard key={extra.title} {...extra} />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

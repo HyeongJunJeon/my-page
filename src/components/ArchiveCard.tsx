@@ -1,13 +1,6 @@
-import Image, { StaticImageData } from "next/image";
+import { Archive } from "@/model/Archive";
+import Image from "next/image";
 import Link from "next/link";
-
-interface ArchiveCardProps {
-  icon: StaticImageData;
-  title: string;
-  link: string;
-  main_description: string;
-  sub_description?: string;
-}
 
 export default function ArchiveCard({
   icon,
@@ -15,7 +8,7 @@ export default function ArchiveCard({
   link,
   main_description,
   sub_description,
-}: ArchiveCardProps) {
+}: Archive) {
   return (
     <Link
       href={link}
@@ -23,7 +16,7 @@ export default function ArchiveCard({
       rel="noopener noreferrer"
       className="block rounded-2xl bg-white p-8 shadow-md transition-all hover:shadow-lg"
     >
-      <div className="flex items-center gap-4">
+      <div className="flex gap-4">
         <Image
           src={icon}
           alt={title}

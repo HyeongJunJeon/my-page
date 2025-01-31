@@ -1,46 +1,53 @@
 import { FaMapMarkerAlt, FaPhone, FaUser } from "react-icons/fa";
 import { MdCalendarToday, MdEmail, MdSchool } from "react-icons/md";
 import PersonalInfoCard from "./PersonalInfoCard";
+import type { PersonalInfo, personalInfoInsertedIcon } from "@/model/About";
 
-const PERSONAL_INFO = [
-  {
-    icon: <FaUser className="h-6 w-6" />,
-    title: "이름",
-    description: "전형준",
-  },
-  {
-    icon: <MdCalendarToday className="h-6 w-6" />,
-    title: "생년월일",
-    description: "95.01.05",
-  },
-  {
-    icon: <FaMapMarkerAlt className="h-6 w-6" />,
-    title: "위치",
-    description: "인천광역시 서구",
-  },
-  {
-    icon: <FaPhone className="h-6 w-6" />,
-    title: "연락처",
-    description: "010-9395-0178",
-  },
-  {
-    icon: <MdEmail className="h-6 w-6" />,
-    title: "이메일",
-    description: "wehj0105@gmail.com",
-  },
-  {
-    icon: <MdSchool className="h-6 w-6" />,
-    title: "학력",
-    description: "방통대 컴퓨터과학과 재학 (2023.08 ~ )",
-  },
-];
+const enum PersonalInfoKey {
+  NAME = "name",
+  BIRTH = "birth",
+  RESIDENCE = "residence",
+  PHONE = "phone",
+  EMAIL = "email",
+  EDUCATION = "education",
+}
 
-export default function PersonalInfo() {
+const iconSize = "h-6 w-6";
+
+const ICONS = {
+  [PersonalInfoKey.NAME]: <FaUser className={iconSize} />,
+  [PersonalInfoKey.BIRTH]: <MdCalendarToday className={iconSize} />,
+  [PersonalInfoKey.RESIDENCE]: <FaMapMarkerAlt className={iconSize} />,
+  [PersonalInfoKey.PHONE]: <FaPhone className={iconSize} />,
+  [PersonalInfoKey.EMAIL]: <MdEmail className={iconSize} />,
+  [PersonalInfoKey.EDUCATION]: <MdSchool className={iconSize} />,
+};
+
+async function fetchPersonalInfos(): Promise<personalInfoInsertedIcon[]> {
+  const response = await fetch(`${process.env.API_BASE_URL}/api/personalInfo`, {
+    cache: "force-cache",
+  });
+  if (!response.ok) {
+    throw new Error("개인정보를 불러오는데 실패했습니다.");
+  }
+
+  const data = await response.json();
+
+  // sanity에는 react-icon을 저장하지 못하기 때문에, key를 이용하여 icon을 추가해줍니다.
+  return data.map((info: PersonalInfo) => ({
+    ...info,
+    icon: ICONS[info.key as PersonalInfoKey],
+  }));
+}
+
+export default async function PersonalInfo() {
+  const personalInfos = await fetchPersonalInfos();
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {PERSONAL_INFO.map((info, index) => (
-        <PersonalInfoCard key={index} {...info} />
-      ))}
+      {personalInfos.map((info) => {
+        const { key, ...props } = info;
+        return <PersonalInfoCard key={key} {...props} />;
+      })}
     </div>
   );
 }

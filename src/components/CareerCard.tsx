@@ -1,19 +1,6 @@
-import Image, { StaticImageData } from "next/image";
+import { Career } from "@/model/Career";
+import Image from "next/image";
 import Tags from "./tags";
-
-interface CareerCardProps {
-  logo: StaticImageData;
-  company: string;
-  period: string;
-  description: string;
-  position: string;
-  projects: {
-    title: string;
-    period: string;
-    description: string;
-    techStack?: string[];
-  }[];
-}
 
 export default function CareerCard({
   logo,
@@ -22,7 +9,7 @@ export default function CareerCard({
   description,
   position,
   projects,
-}: CareerCardProps) {
+}: Career) {
   return (
     <div className="flex gap-8">
       <div className="flex-shrink-0">

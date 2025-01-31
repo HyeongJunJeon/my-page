@@ -27,10 +27,10 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/archiving"
-              className={`transition-colors hover:text-blue-500 ${isActive("/archiving")}`}
+              href="/archive"
+              className={`transition-colors hover:text-blue-500 ${isActive("/archive")}`}
             >
-              Archiving
+              Archive
             </Link>
             <Link
               href="/project"

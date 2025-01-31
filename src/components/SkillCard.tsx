@@ -1,14 +1,10 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import { Skill } from "@/model/About";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-interface SkillCardProps {
-  icon: StaticImageData;
-  name: string;
-}
-
-export default function SkillCard({ icon, name }: SkillCardProps) {
+export default function SkillCard({ icon, title }: Skill) {
   const containerRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -57,12 +53,12 @@ export default function SkillCard({ icon, name }: SkillCardProps) {
       ></div>
       <Image
         src={icon}
-        alt={name}
+        alt={title}
         width={60}
         height={60}
         className="h-auto w-auto"
       />
-      <span className="absolute right-3 top-3 text-sm font-bold">{name}</span>
+      <span className="absolute right-3 top-3 text-sm font-bold">{title}</span>
     </div>
   );
 }

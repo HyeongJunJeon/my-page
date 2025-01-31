@@ -1,5 +1,5 @@
 import MarkdownViewer from "@/components/MarkdownViewer";
-import { ProjectData } from "@/service/projects";
+import { ProjectData } from "@/service/project";
 
 import { AiTwotoneCalendar } from "react-icons/ai";
 
