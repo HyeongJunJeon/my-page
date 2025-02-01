@@ -12,7 +12,7 @@ export async function getProjects() {
   return projects.sort((a, b) => b.order - a.order);
 }
 
-export async function getProjectData(fileName: string): Promise<ProjectData> {
+export async function getProjectBy(fileName: string): Promise<ProjectData> {
   const filePath = path.join(
     process.cwd(),
     "data",

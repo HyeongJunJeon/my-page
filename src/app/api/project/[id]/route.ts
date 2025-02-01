@@ -1,4 +1,4 @@
-import { getProjectData } from "@/service/project";
+import { getProjectBy } from "@/service/project";
 import { NextRequest, NextResponse } from "next/server";
 
 type Context = {
@@ -10,5 +10,5 @@ type Context = {
 export async function GET(_: NextRequest, { params }: Context) {
   const { id } = await params;
 
-  return getProjectData(id).then((data) => NextResponse.json(data));
+  return getProjectBy(id).then((data) => NextResponse.json(data));
 }

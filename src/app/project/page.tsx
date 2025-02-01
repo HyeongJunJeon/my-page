@@ -1,5 +1,5 @@
 import ProjectCard from "@/components/ProjectCard";
-import type { Project } from "@/model/Project";
+import { getProjects } from "@/service/project";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,19 +7,8 @@ export const metadata: Metadata = {
   description: "project 살펴보기",
 };
 
-async function fetchProjects(): Promise<Project[]> {
-  const response = await fetch(`${process.env.API_BASE_URL}/api/project`, {
-    cache: "force-cache",
-  });
-  if (!response.ok) {
-    throw new Error("프로젝트를 불러오는데 실패했습니다.");
-  }
-
-  return response.json();
-}
-
 export default async function Project() {
-  const projects = await fetchProjects();
+  const projects = await getProjects();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12">

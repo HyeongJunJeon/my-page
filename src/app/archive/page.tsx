@@ -1,5 +1,5 @@
 import ArchiveCard from "@/components/ArchiveCard";
-import { Archive } from "@/model/Archive";
+import { getArchives } from "@/service/archive";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,19 +7,8 @@ export const metadata: Metadata = {
   description: "archive 살펴보기",
 };
 
-async function fetchArchives(): Promise<Archive[]> {
-  const response = await fetch(`${process.env.API_BASE_URL}/api/archive`, {
-    cache: "force-cache",
-  });
-  if (!response.ok) {
-    throw new Error("기록물을 불러오는데 실패했습니다.");
-  }
-
-  return response.json();
-}
-
 export default async function Archives() {
-  const archives = await fetchArchives();
+  const archives = await getArchives();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12">

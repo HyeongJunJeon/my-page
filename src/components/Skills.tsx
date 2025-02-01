@@ -1,23 +1,13 @@
 import { Skill } from "@/model/About";
 import SkillCard from "./SkillCard";
-
-async function fetchSkills(): Promise<Skill[]> {
-  const response = await fetch(`${process.env.API_BASE_URL}/api/skill`, {
-    cache: "force-cache",
-  });
-  if (!response.ok) {
-    throw new Error("skill정보를 불러오는데 실패했습니다.");
-  }
-
-  return response.json();
-}
+import { getSkills } from "@/service/about";
 
 function sortSkills(skills: Skill[] | undefined): Skill[] | undefined {
   return skills?.sort((a, b) => a.order - b.order);
 }
 
 export default async function Skills() {
-  const skills = await fetchSkills();
+  const skills = await getSkills();
 
   // 처음에 sanity에 type별로 저장했어야 했는데, groupBy를 사용해볼겸 구현해봤습니다.
   const SkillsGroupedByType = Object.groupBy(skills, (skill) => skill.type);

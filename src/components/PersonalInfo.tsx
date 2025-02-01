@@ -2,6 +2,7 @@ import { FaMapMarkerAlt, FaPhone, FaUser } from "react-icons/fa";
 import { MdCalendarToday, MdEmail, MdSchool } from "react-icons/md";
 import PersonalInfoCard from "./PersonalInfoCard";
 import type { PersonalInfo, personalInfoInsertedIcon } from "@/model/About";
+import { getPersonalInfos } from "@/service/about";
 
 const enum PersonalInfoKey {
   NAME = "name",
@@ -24,17 +25,10 @@ const ICONS = {
 };
 
 async function fetchPersonalInfos(): Promise<personalInfoInsertedIcon[]> {
-  const response = await fetch(`${process.env.API_BASE_URL}/api/personalInfo`, {
-    cache: "force-cache",
-  });
-  if (!response.ok) {
-    throw new Error("개인정보를 불러오는데 실패했습니다.");
-  }
-
-  const data = await response.json();
+  const myInfos = await getPersonalInfos();
 
   // sanity에는 react-icon을 저장하지 못하기 때문에, key를 이용하여 icon을 추가해줍니다.
-  return data.map((info: PersonalInfo) => ({
+  return myInfos.map((info: PersonalInfo) => ({
     ...info,
     icon: ICONS[info.key as PersonalInfoKey],
   }));
