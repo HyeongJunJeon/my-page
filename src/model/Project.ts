@@ -7,4 +7,5 @@ export type Project = {
   details: string[];
   link?: string;
   techStack: string[];
+  category: string;
 };
